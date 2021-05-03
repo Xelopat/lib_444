@@ -1,0 +1,59 @@
+# Добавить количество книг и количество кник в ожидании в users - take_count, wait_count
+# Проверить наличие таблицы subjects
+# Разделить таблицу с датами на 3 - take_books, wait_books, accept_books || id, date
+
+
+//Для админов
+Все пользователи:					"SELECT * FROM users" + "WHERE"
+Пользователи с книгами:					"take_count != 0 SORTED BY COUNT(take_count)"
+Пользователи с книгами в ожидании подтверждения:	"wait_count != 0 SORTED BY COUNT(wait_count)"
+Фильтр пользователя по имени: 				"name == "
+Фильтр пользователей по классу:	 			"class_id == "
+Разрешить только из определённого класса:		"class_id == (SELECT class_id FROM users WHERE id == {id})"
+
+
+//Поиск книги
+Выбор книг:	 					"SELECT * FROM books" + "WHERE"
+Выбор книги по автору:  				"author_id == "
+Выбор книги по классу:  				"class_num == "
+Выбор книги по предмету:				"subject_id == "
+Выбор книги по ISBN:					"isbn == "
+
+
+//Для id
+Выгрузка всех классов: 					"SELECT * FROM classes"
+Выгрузка всех авторов:					"SELECT * FROM authors"
+Выгрузка всех предметов:				"SELECT * FROM subjects"
+
+//Найти name по id
+Выгрузка всех классов по id: 				"SELECT * FROM classes WHERE class_id == "
+Выгрузка всех авторов по id:				"SELECT * FROM authors WHERE author_id == "
+Выгрузка всех предметов по id:				"SELECT * FROM subjects WHERE subject_id == "
+
+//Найти id по name
+Выгрузка всех классов по id: 				"SELECT * FROM classes WHERE class_id == "
+Выгрузка всех авторов по id:				"SELECT * FROM authors WHERE author_id == "
+Выгрузка всех предметов по id:				"SELECT * FROM subjects WHERE subject_id == "
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
