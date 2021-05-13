@@ -24,12 +24,12 @@
 				if($_SESSION["my_is_admin"] == 1) $is_admin = ", админ";
 				else if($_SESSION["my_is_admin"] == -1) $is_admin = ", ожидание подтверждения(админ)";
 				else $is_admin = ", пользователь";
-				$class = get_class_by_id($_SESSION["my_class_id"]);
+				$class = get_class_by_id($_SESSION["my_class_id"])["name"];
 				echo $_SESSION["my_name"] . " " . $class . $is_admin;
 			?></br></br>
 			</br><label>Мои книги</label></br>
 			<label>На руках:</label></br>
-			<table border="1" style="background: #00DD00;">
+			<table border="1" style="background: #55FF55;">
 				<td>Автор</td><td>Предмет</td><td>Класс</td><td>Сдать</td>
 				<?php
 					$taked = show_books($_SESSION["my_id"], "taked_books");

@@ -40,12 +40,13 @@
 				echo "<td><p onclick=reload('name')>Имя</p></td><td><p onclick=reload('class_id')>Класс</p></td>
 				<td align=center><p onclick=reload('take_count')>На руках</p></td>
 				<td align=center><p onclick=reload('take_count')>Ожидают подтверждения</p></td>";
-				$all_books = all_users($info);
-				if($all_books){
-					foreach($all_books as $row){
+				$all_users = all_users($info);
+				if($all_users){
+					foreach($all_users as $row){
 						echo "<tr onclick=get_user($row[id])>";
 						$name = $row["name"];
 						$class = get_class_by_id($row["class_id"]);
+						$class = $class["name"];
 						echo "<td>$name</td><td>$class</td><td>" . (string)$row['take_count'] . "</td><td>" . (string)$row['wait_count'] . "</td>";
 						echo "</tr>";
 					}

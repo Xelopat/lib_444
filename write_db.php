@@ -17,4 +17,8 @@
 		remove_book($_SESSION["my_id"], (int)$_POST["id"], "waited_books");
 		append_book($_SESSION["my_id"], (int)$_POST["id"], "taked_books");
 	}
+	else if($_POST["type"] == "accept"){
+		remove_book($_SESSION["my_id"], (int)$_POST["id"], "waited_books");
+		append_book($_SESSION["my_id"], (int)$_POST["id"], "accepted_books");
+	}
 ?>

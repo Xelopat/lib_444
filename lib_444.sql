@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: localhost
--- Время создания: Май 11 2021 г., 21:29
+-- Время создания: Май 13 2021 г., 19:59
 -- Версия сервера: 5.5.25
 -- Версия PHP: 5.3.13
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `accepted_books` (
   `id_book` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=15 ;
 
 --
 -- Дамп данных таблицы `accepted_books`
@@ -43,7 +43,16 @@ INSERT INTO `accepted_books` (`id`, `id_user`, `id_book`, `date`) VALUES
 (2, 1, 6, '2021-05-06 21:43:38'),
 (3, 1, 5, '2021-05-06 21:43:38'),
 (4, 1, 7, '2021-05-06 21:43:38'),
-(5, 1, 4, '2021-05-06 21:43:38');
+(5, 1, 4, '2021-05-06 21:43:38'),
+(6, 1, 1, '2021-05-12 19:22:27'),
+(7, 1, 0, '2021-05-12 19:30:17'),
+(8, 1, 1, '2021-05-12 19:33:28'),
+(9, 1, 5, '2021-05-12 19:35:24'),
+(10, 1, 4, '2021-05-12 19:39:20'),
+(11, 1, 6, '2021-05-12 19:40:16'),
+(12, 1, 7, '2021-05-12 19:43:52'),
+(13, 1, 6, '2021-05-12 19:44:22'),
+(14, 1, 1, '2021-05-12 19:44:46');
 
 -- --------------------------------------------------------
 
@@ -94,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `books` (
   UNIQUE KEY `id_10` (`id`),
   KEY `id_2` (`id`),
   KEY `id_11` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Дамп данных таблицы `books`
@@ -105,7 +114,12 @@ INSERT INTO `books` (`id`, `author_id`, `subject_id`, `class_num`, `date`, `info
 (4, 4, 3, 8, '0000-00-00', 'Книга_1'),
 (5, 2, 1, 8, '0000-00-00', 'Книга_2'),
 (6, 5, 2, 10, '0000-00-00', 'Книга_3'),
-(7, 1, 2, 4, '0000-00-00', 'Вата');
+(7, 1, 2, 4, '0000-00-00', 'Вата'),
+(8, 1, 1, 5, '0000-00-00', ''),
+(9, 1, 2, 3, '0000-00-00', ''),
+(10, 1, 5, 3, '0000-00-00', ''),
+(11, 5, 4, 3, '0000-00-00', ''),
+(12, 2, 4, 3, '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -174,16 +188,18 @@ CREATE TABLE IF NOT EXISTS `taked_books` (
   `id_book` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=54 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=58 ;
 
 --
 -- Дамп данных таблицы `taked_books`
 --
 
 INSERT INTO `taked_books` (`id`, `id_user`, `id_book`, `date`) VALUES
-(48, 1, 4, '2021-05-06 22:31:46'),
-(50, 1, 1, '2021-05-06 22:32:30'),
-(53, 0, 6, '2021-05-07 19:58:46');
+(53, 0, 6, '2021-05-07 19:58:46'),
+(54, 0, 2, '2021-05-12 19:28:57'),
+(55, 0, 3, '2021-05-12 19:28:57'),
+(56, 2, 1, '2021-05-12 19:29:22'),
+(57, 2, 2, '2021-05-12 19:29:22');
 
 -- --------------------------------------------------------
 
@@ -227,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `waited_books` (
   `id_book` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- Дамп данных таблицы `waited_books`
@@ -236,7 +252,8 @@ CREATE TABLE IF NOT EXISTS `waited_books` (
 INSERT INTO `waited_books` (`id`, `id_user`, `id_book`, `date`) VALUES
 (11, 1, 6, '2021-05-06 22:19:33'),
 (13, 1, 7, '2021-05-06 22:32:41'),
-(15, 0, 1, '2021-05-07 19:59:55');
+(15, 0, 1, '2021-05-07 19:59:55'),
+(16, 1, 4, '2021-05-12 19:21:41');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

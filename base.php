@@ -26,6 +26,18 @@
 		}
 		return false;
 	}
+	function get_user($id){
+		global $link;
+		$sql = "SELECT * FROM users WHERE id='$id'";
+		$result = $link->query($sql);
+		if ($result->num_rows > 0) {
+			while($row = $result->fetch_assoc()) {
+				return array("id" => $row["id"], "login" => $row["login"], "is_admin" => $row["is_admin"], "my_name" => $row["name"], "class_id" => $row["class_id"],
+				"take_count" => $row["take_count"], "wait_count" => $row["wait_count"]);
+			}
+		}
+		return false;
+	}
 	function show_books($id_user, $table_name){
 		global $link;
 		$sql = "SELECT * FROM $table_name WHERE id_user='$id_user'";
@@ -66,7 +78,7 @@
 	}
 	function append_book($id_user, $id_book, $table_name){
 		global $link;
-		$sql = "INSERT INTO $table_name (id_user, id_book) VALUES ('$id_user', $id_book)";
+		$sql = "INSERT INTO $table_name (id_user, id_book) VALUES (`$id_user`, `$id_book`)";
 		$result = $link->query($sql);
 	}
 	function get_book($id){
@@ -109,7 +121,7 @@
 		$result = $link->query($sql);
 		if ($result->num_rows > 0) {
 			while($row = $result->fetch_assoc()) {
-				return $row["name"];
+				return array("name" => $row["name"], "num" => $row["num"]);
 			}
 		}
 		return false;
