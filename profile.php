@@ -8,14 +8,14 @@
 		<link rel="stylesheet" href="style.css">
 		<title>Библиотека</title>
 	</head>
-	<body>
+	<body><br/>
 		<div>
 			<div style="float:left;">
-				<a href="index.php">Назад</a>
+				<a class=button  href="index.php">Назад</a>
 			</div>
 			<div style="float:right;">
-				<a href=""><?php echo $_SESSION["my_name"];?></a>
-				<a href="logout.php">Выход</a>
+				<a class=button  href=""><?php echo $_SESSION["my_name"];?></a>
+				<a class=button  href="logout.php">Выход</a>
 			</div>
 			<div class="clear"></div>
 		</div>

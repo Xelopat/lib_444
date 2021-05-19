@@ -4,11 +4,11 @@
 	if($_SESSION["my_name"] != "") header('Location: index.php');
 	if($_POST["login"] != ""){
 		if($_POST["password"] != $_POST["password_1"]){
-			echo "Пароли не совпадают";
+			echo "<script>alert('Пароли не совпадают')</script>";
 		}
 		else{
 			if(user_exist($_POST["login"])){
-				echo "Такой пользователь уже существует";
+				echo "<script>alert('Такой пользователь уже существует')</script>";
 			}
 			else{
 				if($_POST["is_admin"] == "on") $admin = -1;
@@ -32,33 +32,32 @@
 		<link rel="stylesheet" href="style.css">
 		<title>Регистрация</title>
 	</head>
-	<body>
+	<body><br>
 		<div>
 			<div style="float:left;">
-				<a href="index.php">Назад</a>
+				<a class=button  href="index.php">Назад</a>
 			</div>
 			<div style="float:right;">
-				<a href="login.php">Вход</a>
+				<a class=button  href="login.php">Вход</a>
 			</div>
 			<div class="clear"></div>
 		</div>
 		<form method="POST" style="margin-top:150px;">
-			<div align="center">
-				<label>Логин: </label></br><input type="text" placeholder="name_123" name="login" required></br>
-				<label>Имя, фамилия: </label></br><input type="text" placeholder="Иван Иванов" name="my_name" required></br>
-				<label>Пароль: </label></br><input type="password" placeholder="password" name="password" required></br>
-				<label>Повторите пароль: </label></br><input type="password" placeholder="password" name="password_1" required></br>
-				<label>Выберить свой класс:</label></br><select name="class_id" style="width: 100px">
+			<div class=form>
+				<p>Логин: </p><input type="text" placeholder="name_123" name="login" required autocomplete="nope">
+				<p>Имя, фамилия: </p><input type="text" placeholder="Иван Иванов" name="my_name" required autocomplete="nope">
+				<p>Пароль: </p><input type="password" placeholder="password" name="password" required>
+				<p>Повторите пароль: </p><input type="password" placeholder="password" name="password_1" required>
+				<p>Выберить свой класс:</p><select name="class_id" style="width: 100px;font-size:18px;">
 					<?php
 						$all_classes = all_classes();
 						foreach($all_classes as $row){
 							echo "<option value=" . $row['class_id'] .">" . $row['class'] . "</option>";
 						}
 					?>
-				</select></br>
-				<label>Я админ:</label><input type="checkbox" name="is_admin" onchange="if(this.checked)alert('После регистрации ожидайте подтверждения от другого админа');"></br>
-				<input type="submit" value="Регистрация"></br>
-				<a href="login.php">Уже есть аккаунт?</a>
+				</select><br>
+				<p>Я админ:</p><input type="checkbox" name="is_admin" onchange="if(this.checked)alert('После регистрации ожидайте подтверждения от другого админа');" style="width:20px;height: 20px;">
+				<button type="submit">Регистрация</button><br>
 			</div>
 		</form>
 	</body>
