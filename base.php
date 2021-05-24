@@ -5,6 +5,13 @@
 	$db_name = 'lib_444';
 	$link = mysqli_connect($host, $user, $password, $db_name);
 	
+	if($_POST["class"] != "") remove_class($_POST["class"]);
+	if($_POST["subject"] != "") remove_subject($_POST["subject"]);
+	if($_POST["author"] != "") remove_author($_POST["author"]);
+	if($_POST["book"] != "") remove_book_all($_POST["book"]);
+	
+	
+	
 	function user_exist($login){
 		global $link;
 		$sql = "SELECT * FROM users WHERE login='$login'";
@@ -57,6 +64,7 @@
 		global $link;
 		$sql = "SELECT * FROM taked_books WHERE id_user='$id_user' AND id_book='$id_book'";
 		$result = $link->query($sql);
+		
 		if ($result->num_rows > 0) {
 			return true;
 		}
@@ -76,10 +84,39 @@
 		$sql = "DELETE FROM $table_name WHERE id_user='$id_user' AND id_book=$id_book";
 		$result = $link->query($sql);
 	}
+	function remove_class($id){
+		global $link;
+		$sql = "DELETE FROM classes WHERE id='$id'";
+		$result = $link->query($sql);
+	}
+	function remove_subject($id){
+		global $link;
+		$sql = "DELETE FROM subjects WHERE id='$id'";
+		$result = $link->query($sql);
+	}
+	function remove_author($id){
+		global $link;
+		$sql = "DELETE FROM authors WHERE id='$id'";
+		$result = $link->query($sql);
+	}
+	function remove_book_all($id){
+		global $link;
+		$sql = "DELETE FROM books WHERE id='$id'";
+		$result = $link->query($sql);
+	}
 	function append_book($id_user, $id_book, $table_name){
 		global $link;
-		$sql = "INSERT INTO $table_name (id_user, id_book) VALUES (`$id_user`, `$id_book`)";
+		$sql = "INSERT INTO $table_name (id_user, id_book) VALUES ('$id_user', '$id_book')";
 		$result = $link->query($sql);
+	}
+	function reload_count($user_id, $name, $count){
+		global $link;
+		$count1 = $link->query("SELECT $name FROM users WHERE id='$user_id'");
+		$row = $count1->fetch_assoc();
+		$count2 = (int)$row[$name] + $count;
+		$sql = "UPDATE users SET $name='$count2' WHERE id=$user_id";
+		$result = $link->query($sql);
+		echo mysqli_error($link);
 	}
 	function get_book($id){
 		global $link;
@@ -190,6 +227,29 @@
 	function append_user($login, $password, $my_name, $is_admin, $class_id){
 		global $link;
 		$sql = "INSERT INTO users (login, password, name, is_admin, class_id) VALUES ('$login', '$password', '$my_name', $is_admin, $class_id)";
+		$result = $link->query($sql);
+	}
+	function append_class($class){
+		global $link;
+		$num = $class[0];
+		if($class[0] == "0" or $class[1] == "1") $num .= $class[1];
+		$num1 =(int) $num;
+		$sql = "INSERT INTO classes (name, num) VALUES ('$class', '$num1')";
+		$result = $link->query($sql);
+	}
+	function append_subject($name){
+		global $link;
+		$sql = "INSERT INTO subjects (name) VALUES ('$name')";
+		$result = $link->query($sql);
+	}
+	function append_author($name){
+		global $link;
+		$sql = "INSERT INTO authors (name) VALUES ('$name')";
+		$result = $link->query($sql);
+	}
+	function append_book_all($author_id, $subject_id, $class_num){
+		global $link;
+		$sql = "INSERT INTO books (author_id, subject_id, class_num) VALUES ('$author_id', '$subject_id', '$class_num')";
 		$result = $link->query($sql);
 	}
 ?>
