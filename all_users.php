@@ -8,27 +8,27 @@
 		<link rel="stylesheet" href="style.css">
 		<title>Все пользователи</title>
 	</head>
-	<body>
+	<body><br/>
 		<div>
 			<div style="float:left;">
-				<a href="index.php">Назад</a>
+				<a class=button href="index.php">Назад</a>
 			</div>
 			<div style="float:right;">
 				<div>
-					<a href="profile.php"><?php echo $_SESSION["my_login"]; ?></a>
-					<a href="logout.php">Выход</a>
+					<a class=button href="profile.php"><?php echo $_SESSION["my_login"]; ?></a>
+					<a class=button href="logout.php">Выход</a>
 				</div>
 			</div>
 			<div class="clear"></div>
 		</div>
 		<div align="center">
-			<label>Класс:</label>
-			<select id="class_num" onchange=reload('')>
+			<label  style="font-size: 30px">Класс:</label>
+			<select id="class_num" onchange=reload('')  style="font-size: 30px">
 				<option value="0">Не выбрано</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
 				<option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
 			</select>
 		</div></br>
-		<table border="1" align="center">
+		<table border="1" align="center" width=50%>
 			<?php
 				$info = "";
 				$and = false;
@@ -37,17 +37,17 @@
 					$info = "WHERE class_id IN (SELECT id FROM classes WHERE num = " . $_GET["class_num"] .")";
 				}
 				if($_GET["order"] != "") $info .= " ORDER BY " . $_GET["order"];
-				echo "<td><p onclick=reload('name')>Имя</p></td><td><p onclick=reload('class_id')>Класс</p></td>
-				<td align=center><p onclick=reload('take_count')>На руках</p></td>
-				<td align=center><p onclick=reload('take_count')>Ожидают подтверждения</p></td>";
+				echo "<tr height=40px><td style='font-size:30px;'><p onclick=reload('name')>Имя&#9660;</p></td><td style='font-size:30px;'><p onclick=reload('class_id')>Класс&#9660;</p></td>
+				<td style='font-size:30px;' align=center><p onclick=reload('take_count')>На руках&#9660;</p></td>
+				<td style='font-size:30px;' align=center><p onclick=reload('wait_count')>Ожидают подтверждения&#9660;</p></td></tr>";
 				$all_users = all_users($info);
 				if($all_users){
 					foreach($all_users as $row){
-						echo "<tr onclick=get_user($row[id])>";
+						echo "<tr onclick=get_user($row[id]) height=40px>";
 						$name = $row["name"];
 						$class = get_class_by_id($row["class_id"]);
 						$class = $class["name"];
-						echo "<td>$name</td><td>$class</td><td>" . (string)$row['take_count'] . "</td><td>" . (string)$row['wait_count'] . "</td>";
+						echo "<td style='font-size:30px;'>$name</td><td style='font-size:30px;'>$class</td><td style='font-size:30px;'>" . (string)$row['take_count'] . "</td><td style='font-size:30px;'>" . (string)$row['wait_count'] . "</td>";
 						echo "</tr>";
 					}
 				}
@@ -76,9 +76,9 @@
 			let type = arr.split("_")[1];
 			formData.append('id', id);
 			formData.append('type', type);
-            let response = await fetch('write_db.php', {
-                method: 'POST',
-                body: formData
+      let response = await fetch('write_db.php', {
+        method: 'POST',
+        body: formData
 			});
 			let result = await response.text();
 			if(result == "failed") alert("У вас уже есть эта книга"); 
