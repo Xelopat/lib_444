@@ -35,10 +35,10 @@
 	<body><br>
 		<div>
 			<div style="float:left;">
-				<a class=button  href="index.php">Назад</a>
+				<a class=button href="index.php">Назад</a>
 			</div>
 			<div style="float:right;">
-				<a class=button  href="login.php">Вход</a>
+				<a class=button href="login.php">Вход</a>
 			</div>
 			<div class="clear"></div>
 		</div>
